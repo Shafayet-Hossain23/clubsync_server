@@ -1,0 +1,65 @@
+[
+    {
+        "clubName": "Programming Club",
+        "startDate": "May 8, 2024",
+        "endDate": "May 9, 2024",
+        "startDateNum": "05/08/2024",
+        "endDateNum": "05/09/2024",
+        "fee": 100,
+        "image": "https://i.ibb.co/NNTm4Qn/337166919-226300456648165-7072191378475754589-n.jpg"
+    },
+    {
+        "clubName": "STEAM Club",
+        "startDate": "May 8, 2024",
+        "endDate": "May 9, 2024",
+        "startDateNum": "05/08/2024",
+        "endDateNum": "05/09/2024",
+        "fee": 0,
+        "image": "https://i.ibb.co/NNTm4Qn/337166919-226300456648165-7072191378475754589-n.jpg"
+    },
+    {
+        "clubName": "Robotics Club",
+        "startDate": "May 8, 2024",
+        "endDate": "May 9, 2024",
+        "startDateNum": "05/08/2024",
+        "endDateNum": "05/09/2024",
+        "fee": 50,
+        "image": "https://i.ibb.co/NNTm4Qn/337166919-226300456648165-7072191378475754589-n.jpg"
+    },
+    {
+        "clubName": "Sports Club",
+        "startDate": "May 8, 2024",
+        "endDate": "May 9, 2024",
+        "startDateNum": "05/08/2024",
+        "endDateNum": "05/09/2024",
+        "fee": 120,
+        "image": "https://i.ibb.co/NNTm4Qn/337166919-226300456648165-7072191378475754589-n.jpg"
+    },
+    {
+        "clubName": "Cultural Club",
+        "startDate": "May 8, 2024",
+        "endDate": "May 9, 2024",
+        "startDateNum": "05/08/2024",
+        "endDateNum": "05/09/2024",
+        "fee": 100,
+        "image": "https://i.ibb.co/NNTm4Qn/337166919-226300456648165-7072191378475754589-n.jpg"
+    },
+    {
+        "clubName": "Syber Club",
+        "startDate": "May 8, 2024",
+        "endDate": "May 9, 2024",
+        "startDateNum": "05/08/2024",
+        "endDateNum": "05/09/2024",
+        "fee": 100,
+        "image": "https://i.ibb.co/NNTm4Qn/337166919-226300456648165-7072191378475754589-n.jpg"
+    },
+    {
+        "clubName": "Language Club ",
+        "startDate": "May 8, 2024",
+        "endDate": "May 9, 2024",
+        "startDateNum": "05/08/2024",
+        "endDateNum": "05/09/2024",
+        "fee": 100,
+        "image": "https://i.ibb.co/NNTm4Qn/337166919-226300456648165-7072191378475754589-n.jpg"
+    }
+]

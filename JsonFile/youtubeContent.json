@@ -1,0 +1,231 @@
+[
+    {
+        "videoLink": "https://www.youtube.com/watch?v=ADFDxhipgiI",
+        "title": "Mastering Full Stack Web Development: Your Comprehensive Roadmap",
+        "description": "In 2024, embarking on a journey to become a full-stack web developer involves mastering a diverse set of foundational and cutting-edge technologies. Starting with HTML, CSS, and JavaScript, you'll delve into modern features like async/await and explore advanced layout techniques with CSS Grid and Flexbox. Version control using Git is paramount, enabling collaborative development and project management. Responsive design principles are essential, with frameworks such as Bootstrap 5 or Tailwind CSS aiding in creating adaptable layouts. As you progress to frontend development, choosing and mastering a framework like React, Angular, or Vue.js will be pivotal, alongside understanding GraphQL for efficient data fetching. Embracing Progressive Web App (PWA) concepts with service workers and push notifications will enhance user experience.",
+        "clubName": "Programming Club",
+        "popularContent": "yes",
+        "publishedDate": "May 11, 2024",
+        "publishedDateNum": "05/11/2024",
+        "exploreLink": "https://drive.google.com/drive/folders/1Qi1VB66gzPqCiGT18OwV7Z0rvwzZbvY3?usp=sharing"
+    },
+    {
+        "videoLink": "https://www.youtube.com/watch?v=hf4k4OWlBfI",
+        "title": "Essential Java Programming Tutorials: Master the Language Efficiently",
+        "description": "Java programming remains a cornerstone of software development in 2024, offering robustness, portability, and scalability across a myriad of applications. With its extensive ecosystem and mature libraries, Java continues to power enterprise-level systems, Android applications, and web services. Developers adept in Java are proficient in object-oriented programming principles, threading, and memory management, enabling them to build efficient and reliable software solutions. The language's versatility extends to backend development with frameworks like Spring and Hibernate, facilitating the creation of scalable and maintainable server-side applications. ",
+        "clubName": "Programming Club",
+        "popularContent": "yes",
+        "publishedDate": "May 10, 2024",
+        "publishedDateNum": "05/10/2024"
+    },
+    {
+        "videoLink": "https://www.youtube.com/watch?v=wClEbCyWryI",
+        "title": "Database Essentials: A Foundation for Software Development Success",
+        "description": "Databases are the bedrock of software development, serving as the backbone for storing, managing, and retrieving data efficiently. In 2024, the landscape of database technologies continues to evolve, offering a wide array of options tailored to diverse application needs. Relational databases, like MySQL, PostgreSQL, and SQL Server, maintain their relevance, providing ACID compliance and robust transaction support for mission-critical applications. They are ideal for scenarios where data integrity and consistency are paramount, such as financial systems and enterprise applications.",
+        "clubName": "Programming Club",
+        "popularContent": "no",
+        "publishedDate": "May 09, 2024",
+        "publishedDateNum": "05/09/2024",
+        "exploreLink": "https://drive.google.com/drive/folders/1Qi1VB66gzPqCiGT18OwV7Z0rvwzZbvY3?usp=sharing"
+    },
+    {
+        "videoLink": "https://www.youtube.com/watch?v=3cWeknFxRBk",
+        "title": "Cybersecurity Unveiled: Essential Strategies for Digital Defense and Protection",
+        "description": "In 2024, cybersecurity remains a paramount concern in the ever-expanding digital landscape. Cybersecurity professionals are tasked with defending against a wide array of threats, from sophisticated malware to targeted cyber-attacks. With the rapid advancement of technology, the focus has shifted towards proactive threat detection and prevention, leveraging cutting-edge tools such as artificial intelligence and machine learning to identify and mitigate risks in real-time. Encryption and data protection measures play a crucial role in safeguarding sensitive information, both in transit and at rest, while robust identity and access management practices ensure that only authorized users have access to critical resources.",
+        "clubName": "Programming Club",
+        "popularContent": "yes",
+        "publishedDate": "May 11, 2024",
+        "publishedDateNum": "05/11/2024",
+        "exploreLink": "https://drive.google.com/drive/folders/1Qi1VB66gzPqCiGT18OwV7Z0rvwzZbvY3?usp=sharing"
+    },
+    {
+        "videoLink": "https://www.youtube.com/watch?v=N_sQbYJl820",
+        "title": "2024 Tech Trends: Mapping the Future of Technological Innovation",
+        "description": "In 2024, several prominent tech trends are shaping the digital landscape, offering innovative solutions and driving technological advancements across various industries. One significant trend is the widespread adoption of artificial intelligence (AI) and machine learning (ML) technologies, which are being integrated into diverse applications, from predictive analytics and autonomous vehicles to personalized healthcare and smart manufacturing. Additionally, the rise of the metaverse is transforming how people interact with digital environments, offering immersive virtual experiences and new opportunities for socialization, entertainment, and commerce.",
+        "clubName": "Programming Club",
+        "popularContent": "no",
+        "publishedDate": "May 08, 2024",
+        "publishedDateNum": "05/08/2024",
+        "exploreLink": "https://drive.google.com/drive/folders/1Qi1VB66gzPqCiGT18OwV7Z0rvwzZbvY3?usp=sharing"
+    },
+    {
+        "videoLink": "https://www.youtube.com/watch?v=S0OFUuD02YU",
+        "title": "ICPC World Final Journey & Contest Programming Guideline",
+        "description": "ICPC World Final Journey & Contest Programming Guideline with BUET NurdHerd Team😍😍, গ্রেট নিউজ। 🔥🔥🔥ICPC প্রোগ্রামিং কন্টেস্ট কিভাবে শুরু করবেন, ICPC প্রোগ্রামিং কনটেস্ট কিভাবে ভালো করবেন , ICPC প্রোগ্রামিং-এ আপনার দক্ষতা দৃঢ় করতে এবং আপনাকে একটি সঠিক গাইডলাইন দিতে আমরা নিয়ে এসেছি এবারের ধুম ধারাক্কা লাইভ প্রোগ্রামI 💥💥💥,, ICPC World Final Journey & Contest Programming Guideline with BUET NurdHerd Team😍😍,, প্রোগ্রামিং হিরো কমিউনিটির লাইভে অতিথি হিসেবে আসছেন BUET Nerdherd Team 🔥🔥🔥 সেশনে গেস্ট হিসেবে থাকছেনঃ ১। Apurba Saha",
+        "clubName": "Programming Club",
+        "popularContent": "yes",
+        "publishedDate": "May 07, 2024",
+        "publishedDateNum": "05/07/2024",
+        "exploreLink": "https://drive.google.com/drive/folders/1Qi1VB66gzPqCiGT18OwV7Z0rvwzZbvY3?usp=sharing"
+    },
+    {
+        "videoLink": "https://www.youtube.com/watch?v=xrwz9IxpMJg&t=59s",
+        "title": "Exploring Robots and Robotics: Innovations Shaping Our Future",
+        "description": "In 2024, robotics and robotic technologies are experiencing significant advancements, revolutionizing various industries and reshaping the way tasks are performed. From manufacturing and logistics to healthcare and service sectors, robots are increasingly being deployed to automate repetitive tasks, enhance efficiency, and improve productivity. Collaborative robots, or cobots, are gaining popularity for their ability to work alongside humans safely, facilitating human-robot collaboration in assembly lines, warehouses, and healthcare settings. Moreover, advancements in artificial intelligence and machine learning are enabling robots to exhibit greater autonomy, adaptability, and decision-making capabilities, allowing them to perform complex tasks with precision and efficiency. ",
+        "clubName": "Robotics Club",
+        "popularContent": "yes",
+        "publishedDate": "May 06, 2024",
+        "publishedDateNum": "05/06/2024",
+        "exploreLink": "https://drive.google.com/drive/folders/1Qi1VB66gzPqCiGT18OwV7Z0rvwzZbvY3?usp=sharing"
+    },
+    {
+        "videoLink": "https://www.youtube.com/watch?v=xV0A4wZreW0",
+        "title": "Robotics' Future in Bangladesh: Trends and Transformations Ahead",
+        "description": "In Bangladesh, the future of robotics holds immense potential to address various societal challenges, drive economic growth, and foster innovation across different sectors. With the government's initiatives to promote digitalization and technology adoption, coupled with a growing tech-savvy workforce and a burgeoning startup ecosystem, Bangladesh is well-positioned to capitalize on the opportunities presented by robotics.",
+        "clubName": "Robotics Club",
+        "popularContent": "yes",
+        "publishedDate": "May 05, 2024",
+        "publishedDateNum": "05/05/2024",
+        "exploreLink": "https://drive.google.com/drive/folders/1Qi1VB66gzPqCiGT18OwV7Z0rvwzZbvY3?usp=sharing"
+    },
+    {
+        "videoLink": "https://www.youtube.com/watch?v=gizihSJ63o4",
+        "title": "Robotics for Beginners: Your Introduction to the World of Automation",
+        "description": "For beginners eager to delve into robotics, the journey begins with grasping the fundamentals of electronics and programming. Start by acquainting oneself with basic electronic components and learning a programming language like Python or C/C++ commonly used in robotics. Investing in a beginner-friendly robotics kit or platform, such as Arduino or Raspberry Pi, is the next step. These platforms offer a plethora of sensors, actuators, and components, facilitating hands-on learning and experimentation. ",
+        "clubName": "Robotics Club",
+        "popularContent": "no",
+        "publishedDate": "May 04, 2024",
+        "publishedDateNum": "05/04/2024",
+        "exploreLink": "https://drive.google.com/drive/folders/1Qi1VB66gzPqCiGT18OwV7Z0rvwzZbvY3?usp=sharing"
+    },
+    {
+        "videoLink": "https://www.youtube.com/watch?v=rXSWbpUVG3Q",
+        "title": "Bangabandhu Sheikh Mujibur Rahman Digital University, Bangladesh | 2022",
+        "description": "ডিজিটাল শিক্ষা ব্যবস্থার স্বপ্ন সারথী বিডিইউ ,মুজিববর্ষ সমাপনী অনুষ্ঠান-২০২২, বঙ্গবন্ধু শেখ মুজিবুর রহমান ডিজিটাল ইউনিভার্সিটি,বাংলাদেশ",
+        "clubName": "Cultural Club",
+        "popularContent": "no",
+        "publishedDate": "May 02, 2024",
+        "publishedDateNum": "05/02/2024",
+        "exploreLink": "https://drive.google.com/drive/folders/1Qi1VB66gzPqCiGT18OwV7Z0rvwzZbvY3?usp=sharing"
+    },
+    {
+        "videoLink": "https://www.youtube.com/watch?v=bQebzv8sShE",
+        "title": "The Numbers Game: Deciphering Patterns, Predicting Outcomes, Mastering Mathematics",
+        "description": "Are you in need of easy icebreaker activities for your next event or group gathering? Why not try out The Numbers Game? The Numbers Game is a perfect icebreaker for large groups or small groups and is sure to get your people up and moving around. Use this simple icebreaker game to energize your crowd and fill the room with smiles. ",
+        "clubName": "Cultural Club",
+        "popularContent": "no",
+        "publishedDate": "May 02, 2024",
+        "publishedDateNum": "05/02/2024",
+        "exploreLink": "https://drive.google.com/drive/folders/1Qi1VB66gzPqCiGT18OwV7Z0rvwzZbvY3?usp=sharing"
+    },
+    {
+        "videoLink": "https://www.youtube.com/watch?v=UP0oCJnluwM",
+        "title": "Anchoring: Unlocking the Power of Influence through Effective Communication",
+        "description": "Welcome to Gargi Bangla Kobita Abritti - Your destination for the best of Bengali culture and arts! I'm Gargi Podder, your Bengali Anchor, Recitor, and Voice Artist, and I'm thrilled to have you here.",
+        "clubName": "Cultural Club",
+        "popularContent": "yes",
+        "publishedDate": "May 01, 2024",
+        "publishedDateNum": "05/01/2024",
+        "exploreLink": "https://drive.google.com/drive/folders/1Qi1VB66gzPqCiGT18OwV7Z0rvwzZbvY3?usp=sharing"
+    },
+    {
+        "videoLink": "https://www.youtube.com/watch?v=20-shK29fZ0",
+        "title": "Revisiting the Rebeka Shafi Debate: A Historical Discourse",
+        "description": "Rebeka Shafi's Debate",
+        "clubName": "Debating Society",
+        "popularContent": "yes",
+        "publishedDate": "May 07, 2024",
+        "publishedDateNum": "05/07/2024",
+        "exploreLink": "https://drive.google.com/drive/folders/1Qi1VB66gzPqCiGT18OwV7Z0rvwzZbvY3?usp=sharing"
+    },
+    {
+        "videoLink": "https://www.youtube.com/watch?v=molp5ns8vx0",
+        "title": "বৃদ্ধ পিতা মাতার প্রতি অবহেলার মূল কারণ সন্তানের মানসিকতা | 2024",
+        "description": "১ম বাংলাদেশ টেলিভিশন কলেজ বিতর্ক প্রতিযোগিতা ২য় রাউন্ড",
+        "clubName": "Debating Society",
+        "popularContent": "no",
+        "publishedDate": "May 09, 2024",
+        "publishedDateNum": "05/09/2024",
+        "exploreLink": "https://drive.google.com/drive/folders/1Qi1VB66gzPqCiGT18OwV7Z0rvwzZbvY3?usp=sharing"
+    },
+    {
+        "videoLink": "https://www.youtube.com/watch?v=eHOGRwmZDl8",
+        "title": "বিতর্ক: আধো রাতে যদি ঘুম ভেঙে যায় -মনে পড়ে | 2024 ",
+        "description": "১ম বাংলাদেশ টেলিভিশন কলেজ বিতর্ক প্রতিযোগিতা, বিষয়: আধো রাতে যদি ঘুম ভেঙে যায় -মনে পড়ে, উপস্থাপনা- মিপা বিশ্বাস",
+        "clubName": "Debating Society",
+        "popularContent": "no",
+        "publishedDate": "May 11, 2024",
+        "publishedDateNum": "05/11/2024",
+        "exploreLink": "https://drive.google.com/drive/folders/1Qi1VB66gzPqCiGT18OwV7Z0rvwzZbvY3?usp=sharing"
+    },
+    {
+        "videoLink": "https://www.youtube.com/watch?v=Mr2f4MxGmA8",
+        "title": "Mastering IELTS Reading: Effective Scanning Techniques and Strategies ",
+        "description": "Scanning efficiently in the IELTS Reading test is crucial for quickly locating specific information within passages. Start by understanding the question types and identifying key words or phrases in each question. These act as signposts during scanning, guiding you to relevant sections of the passage. Skim through the passage briefly to get a sense of its structure and main ideas, then focus on specific paragraphs or sections where the answer might be found.",
+        "clubName": "Language Club",
+        "popularContent": "yes",
+        "publishedDate": "May 10, 2024",
+        "publishedDateNum": "05/10/2024",
+        "exploreLink": "https://drive.google.com/drive/folders/1Qi1VB66gzPqCiGT18OwV7Z0rvwzZbvY3?usp=sharing"
+    },
+    {
+        "videoLink": "https://www.youtube.com/watch?v=8LKSA-NvtgY",
+        "title": "Learning Japanese: A Comprehensive Guide in Bangla Language",
+        "description": "Japanese Language Learning in Bangla",
+        "clubName": "Language Club",
+        "popularContent": "no",
+        "publishedDate": "May 08, 2024",
+        "publishedDateNum": "05/08/2024",
+        "exploreLink": "https://drive.google.com/drive/folders/1Qi1VB66gzPqCiGT18OwV7Z0rvwzZbvY3?usp=sharing"
+    },
+    {
+        "videoLink": "https://www.youtube.com/watch?v=nf1rzqG3nvA",
+        "title": "German Conversations for Beginners: Essential Communication Tips",
+        "description": "Learn German with this 13-minute German Conversation for Beginners lesson.  In this video, you'll learn 50 basic German phrases to help you learn German fast.  Our native English speaker will say each phrase, then our native German speaker will repeat the phrase twice in German.  ",
+        "clubName": "Language Club",
+        "popularContent": "no",
+        "publishedDate": "May 10, 2024",
+        "publishedDateNum": "05/10/2024",
+        "exploreLink": "https://drive.google.com/drive/folders/1Qi1VB66gzPqCiGT18OwV7Z0rvwzZbvY3?usp=sharing"
+    },
+    {
+        "videoLink": "https://www.youtube.com/watch?v=lxa9V3BQvOc",
+        "title": "Sports Management: Strategies for Success in Athletic Administration",
+        "description": "Sports Management - A Goldmine Of Opportunities | Nilesh Kulkarni | TEDxDYPatilUniversity",
+        "clubName": "Sports Club",
+        "popularContent": "no",
+        "publishedDate": "May 07, 2024",
+        "publishedDateNum": "05/07/2024",
+        "exploreLink": "https://drive.google.com/drive/folders/1Qi1VB66gzPqCiGT18OwV7Z0rvwzZbvY3?usp=sharing"
+    },
+    {
+        "videoLink": "https://www.youtube.com/watch?v=L_jbCyKnyoU",
+        "title": "Sports Gala 2023 | The University of Faisalabad | 2022",
+        "description": "Fears and limits are often just illusions, Tufians have proved it right. It was an amazing week of sports at The University of Faisalabad. ",
+        "clubName": "Sports Club",
+        "popularContent": "yes",
+        "publishedDate": "May 01, 2024",
+        "publishedDateNum": "05/01/2024",
+        "exploreLink": "https://drive.google.com/drive/folders/1Qi1VB66gzPqCiGT18OwV7Z0rvwzZbvY3?usp=sharing"
+    },
+    {
+        "videoLink": "https://www.youtube.com/watch?v=vUAQNCEXxAc",
+        "title": "The Superpowers of STEM: Unleashing Innovation for Tomorrow's World ",
+        "description": "We can't afford any more accidental engineers, explains Stephanie Hill, who has been recognized for her career achievements and community outreach, especially in the advancement of STEM education. Diversity drives innovation, and we need more voices at the table to make the impossible possible. Stephanie C. Hill is the Senior Vice President of Corporate Strategy and Business Development at Lockheed Martin.",
+        "clubName": "STEAM Club",
+        "popularContent": "no",
+        "publishedDate": "May 06, 2024",
+        "publishedDateNum": "05/06/2024",
+        "exploreLink": "https://drive.google.com/drive/folders/1Qi1VB66gzPqCiGT18OwV7Z0rvwzZbvY3?usp=sharing"
+    },
+    {
+        "videoLink": "https://www.youtube.com/watch?v=vSAXJCPC5C4",
+        "title": "Traditional Education Versus STEAM: Bridging Gaps in Learning",
+        "description": "The educational process consists of lots of factors that directly affect the students. These factors witnessed great change in the 21st Century and thus what was considered a good education 50 years ago is not sufficient for success in an economy driven by innovation and knowledge. ",
+        "clubName": "STEAM Club",
+        "popularContent": "no",
+        "publishedDate": "May 04, 2024",
+        "publishedDateNum": "05/04/2024",
+        "exploreLink": "https://drive.google.com/drive/folders/1Qi1VB66gzPqCiGT18OwV7Z0rvwzZbvY3?usp=sharing"
+    },
+    {
+        "videoLink": "https://www.youtube.com/watch?v=H7LHsL0iB_w",
+        "title": "STEAM + Project-Based Learning: Real Solutions From Driving Questions",
+        "description": "STEAM + Project-Based Learning: Real Solutions From Driving Questions",
+        "clubName": "STEAM Club",
+        "popularContent": "yes",
+        "publishedDate": "May 02, 2024",
+        "publishedDateNum": "05/02/2024",
+        "exploreLink": "https://drive.google.com/drive/folders/1Qi1VB66gzPqCiGT18OwV7Z0rvwzZbvY3?usp=sharing"
+    }
+]
