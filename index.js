@@ -520,12 +520,94 @@ async function run() {
         //******* */ admin section ******
 
         // get club members length
-        app.get('/club_reg_std_data', verifyJWT, verifyClubAdmin, async (req, res) => {
+        app.get('/club_reg_std_data_len', verifyJWT, verifyClubAdmin, async (req, res) => {
             const clubName = req.query.clubName
             const query = {
                 clubName: clubName
             }
             const result = await allClubStdRegisterColl.find(query).toArray()
+            res.send(result)
+        })
+        app.get('/club_reg_std_data', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const clubName = req.query.clubName
+            const searchId = req.query.searchId
+            if (searchId) {
+                const query = {
+                    uid: searchId,
+                    clubName: clubName
+                }
+                const result = await allClubStdRegisterColl.find(query).toArray()
+                return res.send(result)
+            }
+            else {
+                const query = {
+                    clubName: clubName
+                }
+                const result = await allClubStdRegisterColl.find(query).toArray()
+                res.send(result)
+            }
+        })
+        // club reg delete
+        app.delete('/club_reg_std_delete', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const id = req.query.id
+            const query = {
+                _id: new ObjectId(id)
+            }
+            const result = await allClubStdRegisterColl.deleteOne(query)
+            res.send(result)
+        })
+        // add club info
+        app.post('/add_club_info', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const data = req.body
+            const query = {
+                clubName: data?.clubName
+            }
+            const existClub = await clubRegisterInfo.findOne(query)
+            if (!existClub) {
+                const result = await clubRegisterInfo.insertOne(data)
+                return res.send(result)
+            }
+            else {
+                return res.send({ acknowledged: false })
+            }
+
+        })
+        // get club info club_info_by_club_name
+        app.get('/clubInfoByClubName', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const clubName = req.query.clubName
+            const query = {
+                clubName: clubName
+            }
+            const result = await clubRegisterInfo.find(query).toArray()
+            res.send(result)
+        })
+        // edit club Info
+        app.put("/editClubInfo", verifyJWT, verifyClubAdmin, async (req, res) => {
+            const editInfo = req.body
+            const filter = {
+                clubName: editInfo?.clubName
+            }
+            const dataUpdated = {
+                $set: {
+                    image: editInfo?.image,
+                    fee: editInfo?.fee,
+                    totalMembers: editInfo?.totalMembers,
+                    endDate: editInfo?.endDate,
+                    endDateNum: editInfo?.endDateNum
+
+                }
+            }
+            const result1 = await clubRegisterInfo.updateOne(filter, dataUpdated)
+            res.send(result1)
+
+        })
+        // delete club info
+        app.delete('/deleteClubInfo', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const clubName = req.query.clubName
+            const query = {
+                clubName: clubName
+            }
+            const result = await clubRegisterInfo.deleteOne(query)
             res.send(result)
         })
     }
