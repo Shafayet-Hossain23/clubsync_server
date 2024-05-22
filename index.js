@@ -152,19 +152,44 @@ async function run() {
 
         })
         // get latest news and events
+        /*  app.get('/latest_news_events', async (req, res) => {
+             const date = req.query.date
+             const currentDate = new Date(); // Get the current date
+             const formateDate = format(currentDate, 'PP');
+             // console.log(formateDate)
+             if (date === formateDate) {
+                 const query = { eventDate: { $gte: formateDate } };
+                 const result = await newsEventsCollection.find(query).sort({ eventDate: 1 }).toArray()
+                 return res.send(result)
+             }
+             else {
+                 const query = { eventDate: date };
+                 const result = await newsEventsCollection.find(query).sort({ eventDate: 1 }).toArray()
+                 return res.send(result)
+             }
+ 
+         }) */
         app.get('/latest_news_events', async (req, res) => {
-            const date = req.query.date
+            const dateNum = req.query.dateNum
             const currentDate = new Date(); // Get the current date
-            const formateDate = format(currentDate, 'PP');
-            // console.log(formateDate)
-            if (date === formateDate) {
-                const query = { eventDate: { $gte: formateDate } };
-                const result = await newsEventsCollection.find(query).sort({ eventDate: 1 }).toArray()
+            // const formateDate = format(currentDate, 'PP');
+            const currentDateNum = currentDate.toLocaleDateString();
+            // console.log(dateNum)
+            if (dateNum === currentDateNum) {
+                const query =
+                {
+                    advisorApproval: "approved",
+                    eventDateNum: { $gte: dateNum }
+                };
+                const result = await eventRegisterInfos.find(query).sort({ eventDateNum: 1 }).toArray()
                 return res.send(result)
             }
             else {
-                const query = { eventDate: date };
-                const result = await newsEventsCollection.find(query).sort({ eventDate: 1 }).toArray()
+                const query = {
+                    advisorApproval: "approved",
+                    eventDateNum: dateNum
+                };
+                const result = await eventRegisterInfos.find(query).sort({ eventDateNum: 1 }).toArray()
                 return res.send(result)
             }
 
@@ -219,10 +244,12 @@ async function run() {
             // console.log(stdClubRegisterInfo)
             const stdEmail = data?.stdEmail;
             const eventId = data?.eventId;
+            const eventClubName = data?.eventClubName;
 
             const existQuery = {
                 stdEmail: stdEmail,
-                eventId: eventId
+                eventId: eventId,
+                eventClubName: eventClubName
             }
             const findingResult = await allEventsStdRegColl.findOne(existQuery)
             if (!findingResult) {
@@ -366,16 +393,18 @@ async function run() {
             const filterText = req.query.filterText;
             if (!filterText) {
                 const query = {
+                    advisorApproval: "approved",
                     clubName: { $in: clubNames }
                 };
-                const result = await eventRegisterInfos.find(query).toArray()
+                const result = await eventRegisterInfos.find(query).sort({ eventDateNum: -1 }).toArray()
                 return res.send(result)
             }
             else {
                 const query = {
+                    advisorApproval: "approved",
                     clubName: filterText
                 }
-                const result = await eventRegisterInfos.find(query).toArray()
+                const result = await eventRegisterInfos.find(query).sort({ eventDateNum: -1 }).toArray()
                 return res.send(result)
             }
 
@@ -609,6 +638,187 @@ async function run() {
             }
             const result = await clubRegisterInfo.deleteOne(query)
             res.send(result)
+        })
+        // eventInfoByClub
+        app.get('/eventInfoByClub', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const clubName = req.query.clubName
+            const query = {
+                clubName: clubName
+            }
+            const result = await eventRegisterInfos.find(query).sort({ eventId: -1 }).toArray()
+            res.send(result)
+        })
+        // add event info 
+        app.post('/add_event_info', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const data = req.body
+            const query = {
+                eventId: data?.eventId,
+                clubName: data?.clubName
+            }
+            const existClub = await eventRegisterInfos.findOne(query)
+            if (!existClub) {
+                const result = await eventRegisterInfos.insertOne(data)
+                return res.send(result)
+            }
+            else {
+                return res.send({ acknowledged: false })
+            }
+
+        })
+        // deleteEventInfo
+        app.delete('/deleteEventInfo', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const clubName = req.query.clubName
+            const eventId = parseInt(req.query.eventId)
+            // console.log(clubName, eventId)
+            const query1 = {
+                eventId: eventId,
+                eventClubName: clubName
+            }
+            const result1 = await allEventsStdRegColl.deleteMany(query1)
+            const query2 = {
+                eventId: eventId,
+                clubName: clubName
+            }
+            const result2 = await eventRegisterInfos.deleteOne(query2)
+            res.json({ result1, result2 })
+            // res.send(result2)
+        })
+        // edit event Info
+        app.put("/editEventInfo", verifyJWT, verifyClubAdmin, async (req, res) => {
+            const editInfo = req.body
+
+            const filter = {
+                _id: new ObjectId(editInfo?.mongodbId)
+            }
+            const dataUpdated = {
+                $set: {
+                    headline: editInfo?.headline,
+                    sortHeadline: editInfo?.sortHeadline,
+                    eventDetails: editInfo?.eventDetails,
+                    eventBanner: editInfo?.eventBanner,
+                    clubLogo: editInfo?.clubLogo,
+                    eventTime: editInfo?.eventTime,
+                    companyName: editInfo?.companyName,
+                    isCertificate: editInfo?.isCertificate, certificateType: editInfo?.certificateType,
+                    companyLogo: editInfo?.companyLogo,
+                    presidentName: editInfo?.presidentName,
+                    presidentSign: editInfo?.presidentSign,
+                    gsName: editInfo?.gsName,
+                    gsSign: editInfo?.gsSign,
+                    eventDate: editInfo?.editEventDate,
+                    eventDateNum: editInfo?.editEventDateNum,
+                    regEndDate: editInfo?.editEventDateline,
+                    regEndDateNum: editInfo?.editEventDatelineNum,
+                    venue: editInfo?.venue,
+                }
+            }
+            const result1 = await eventRegisterInfos.updateOne(filter, dataUpdated)
+            res.send(result1)
+
+        })
+        // get all events register collection eventRegInfoByClub
+        app.get('/eventRegInfoByClub', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const clubName = req.query.clubName;
+            const searchId = req.query.eventId;
+            if (searchId) {
+                const eventId = parseInt(searchId);
+                const query = {
+                    eventId: eventId,
+                    eventClubName: clubName
+                }
+                const result = await allEventsStdRegColl.find(query).sort({ eventId: -1 }).toArray()
+                return res.send(result)
+            }
+            else {
+                const query = {
+                    eventClubName: clubName
+                }
+                const result = await allEventsStdRegColl.find(query).sort({ eventId: -1 }).toArray()
+                return res.send(result)
+            }
+        })
+        // updateCertificateStatus
+        app.put("/updateCertificateStatus", verifyJWT, verifyClubAdmin, async (req, res) => {
+            const editInfo = req.body
+
+            const filter = {
+                _id: new ObjectId(editInfo?.mongodbId)
+            }
+            const dataUpdated = {
+                $set: {
+                    status: editInfo?.certificateStatus
+                }
+            }
+            const result1 = await allEventsStdRegColl.updateOne(filter, dataUpdated)
+            res.send(result1)
+
+        })
+        // get notice by club
+        app.get('/getNoticeByClub', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const clubName = req.query.clubName;
+            const searchId = req.query.noticeId;
+            if (searchId) {
+                const noticeId = parseInt(searchId);
+                const query = {
+                    noticeId: noticeId,
+                    clubName: clubName
+                }
+                const result = await noticeCollection.find(query).sort({ noticeId: -1 }).toArray()
+                return res.send(result)
+            }
+            else {
+                const query = {
+                    clubName: clubName
+                }
+                const result = await noticeCollection.find(query).sort({ noticeId: -1 }).toArray()
+                return res.send(result)
+            }
+        })
+
+        // add notice data noticeId add_notice_data
+        app.post('/add_notice_data', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const data = req.body
+            const query = {
+                noticeId: data?.noticeId,
+                clubName: data?.clubName
+            }
+            const existClub = await noticeCollection.findOne(query)
+            if (!existClub) {
+                const result = await noticeCollection.insertOne(data)
+                return res.send(result)
+            }
+            else {
+                return res.send({ acknowledged: false })
+            }
+
+        })
+        // deleteNoticeInfo
+        app.delete('/deleteNoticeInfo', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const id = req.query.id
+            const query = {
+                _id: new ObjectId(id)
+            }
+            const result = await noticeCollection.deleteOne(query)
+            res.send(result)
+        })
+        // editNoticeData
+        app.put("/editNoticeData", verifyJWT, verifyClubAdmin, async (req, res) => {
+            const editInfo = req.body
+
+            const filter = {
+                _id: new ObjectId(editInfo?.mongodbNoticeId)
+            }
+            const dataUpdated = {
+                $set: {
+                    clubLogo: editInfo?.clubLogo,
+                    noticeDetails: editInfo?.noticeDetails,
+                    headline: editInfo?.headline,
+                    // noticeId: editInfo?.noticeId,
+                }
+            }
+            const result1 = await noticeCollection.updateOne(filter, dataUpdated)
+            res.send(result1)
+
         })
     }
     finally {
