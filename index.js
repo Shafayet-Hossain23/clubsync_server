@@ -61,6 +61,8 @@ async function run() {
         const discountCollection = client.db("BduClubMaster").collection("DiscountsCollection");
         const guidanceCollection = client.db("BduClubMaster").collection("GuidanceCollection");
         const noticeCollection = client.db("BduClubMaster").collection("NoticeCollection");
+        const budgetCollection = client.db("BduClubMaster").collection("BudgetCollection");
+
 
         // insert std register info to database
         app.post('/registeredStds', async (req, res) => {
@@ -136,6 +138,18 @@ async function run() {
             }
             const user = await registeredStd.findOne(query)
             if (user?.role !== "admin") {
+                return res.send({ message: "Access forbidden" })
+            }
+            next()
+        }
+        // verify advisor
+        const verifyAdvisor = async (req, res, next) => {
+            const decodedEmail = req.decoded.email
+            const query = {
+                stdEmail: decodedEmail
+            }
+            const user = await registeredStd.findOne(query)
+            if (user?.role !== "advisor") {
                 return res.send({ message: "Access forbidden" })
             }
             next()
@@ -686,7 +700,34 @@ async function run() {
         // edit event Info
         app.put("/editEventInfo", verifyJWT, verifyClubAdmin, async (req, res) => {
             const editInfo = req.body
-
+            const filterStd = {
+                eventId: editInfo?.eventId,
+                eventClubName: editInfo?.clubName
+            }
+            const dataUpdatedStd = {
+                $set: {
+                    eventHeadline: editInfo?.headline,
+                    sortHeadline: editInfo?.sortHeadline,
+                    eventDetails: editInfo?.eventDetails,
+                    // eventBanner: editInfo?.eventBanner,
+                    clubLogo: editInfo?.clubLogo,
+                    eventTime: editInfo?.eventTime,
+                    companyName: editInfo?.companyName,
+                    isCertificate: editInfo?.isCertificate,
+                    certificateType: editInfo?.certificateType,
+                    companyLogo: editInfo?.companyLogo,
+                    presidentName: editInfo?.presidentName,
+                    presidentSign: editInfo?.presidentSign,
+                    gsName: editInfo?.gsName,
+                    gsSign: editInfo?.gsSign,
+                    eventDate: editInfo?.editEventDate,
+                    // eventDateNum: editInfo?.editEventDateNum,
+                    eventRegEndDate: editInfo?.editEventDateline,
+                    // regEndDateNum: editInfo?.editEventDatelineNum,
+                    venue: editInfo?.venue,
+                }
+            }
+            const result2 = await allEventsStdRegColl.updateOne(filterStd, dataUpdatedStd)
             const filter = {
                 _id: new ObjectId(editInfo?.mongodbId)
             }
@@ -820,6 +861,377 @@ async function run() {
             res.send(result1)
 
         })
+        // library
+        // get youtube content
+        app.get('/contentDataByAdmin', verifyJWT, verifyClubAdmin, async (req, res) => {
+
+            const clubName = req.query.clubName;
+            const searchText = req.query.searchText;
+            // console.log(searchText)
+            if (searchText) {
+                const query = {
+                    clubName: clubName,
+                    $text: {
+                        $search: searchText
+                    }
+                };
+                const result = await youtubeContentColl.find(query).sort({ libraryId: -1 }).toArray();
+                return res.send(result);
+            }
+            else {
+
+                const query = {
+                    clubName: clubName,
+                };
+                const result = await youtubeContentColl.find(query).sort({ libraryId: -1 }).toArray();
+                return res.send(result);
+
+
+            }
+        });
+        // add_library_data
+        app.post('/add_library_data', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const data = req.body
+            const query = {
+                libraryId: data?.libraryId,
+                clubName: data?.clubName
+            }
+            const existClub = await youtubeContentColl.findOne(query)
+            if (!existClub) {
+                const result = await youtubeContentColl.insertOne(data)
+                return res.send(result)
+            }
+            else {
+                return res.send({ acknowledged: false })
+            }
+
+        })
+        // editLibraryData
+        app.put("/editLibraryData", verifyJWT, verifyClubAdmin, async (req, res) => {
+            const editInfo = req.body
+
+            const filter = {
+                _id: new ObjectId(editInfo?.mongodbId)
+            }
+            const dataUpdated = {
+                $set: {
+                    // libraryId: editInfo?.libraryId,
+                    title: editInfo?.title,
+                    description: editInfo?.description,
+                    videoLink: editInfo?.videoLink,
+                    exploreLink: editInfo?.exploreLink,
+                    popularContent: editInfo?.popularContent,
+                }
+            }
+            const result1 = await youtubeContentColl.updateOne(filter, dataUpdated)
+            res.send(result1)
+
+        })
+        // deleteLibraryInfo
+        app.delete('/deleteLibraryInfo', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const id = req.query.id
+            const query = {
+                _id: new ObjectId(id)
+            }
+            const result = await youtubeContentColl.deleteOne(query)
+            res.send(result)
+        })
+
+        // rewards  rewardsDataByAdmin
+        app.get('/rewardsDataByAdmin', verifyJWT, verifyClubAdmin, async (req, res) => {
+
+            const clubName = req.query.clubName;
+            const searchText = req.query.searchText;
+            // console.log(searchText)
+            if (searchText) {
+                const query = {
+                    clubName: clubName,
+                    $text: {
+                        $search: searchText
+                    }
+                };
+                const result = await discountCollection.find(query).sort({ rewardId: -1 }).toArray();
+                return res.send(result);
+            }
+            else {
+
+                const query = {
+                    clubName: clubName,
+                };
+                const result = await discountCollection.find(query).sort({ rewardId: -1 }).toArray();
+                return res.send(result);
+
+
+            }
+        });
+        // add_rewards_data
+        app.post('/add_rewards_data', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const data = req.body
+            const query = {
+                rewardId: data?.rewardId,
+                clubName: data?.clubName
+            }
+            const existClub = await discountCollection.findOne(query)
+            if (!existClub) {
+                const result = await discountCollection.insertOne(data)
+                return res.send(result)
+            }
+            else {
+                return res.send({ acknowledged: false })
+            }
+
+        })
+        // editRewardData
+        app.put("/editRewardData", verifyJWT, verifyClubAdmin, async (req, res) => {
+            const editInfo = req.body
+
+            const filter = {
+                _id: new ObjectId(editInfo?.mongodbId)
+            }
+            const dataUpdated = {
+                $set: {
+                    // rewardId: editInfo?.rewardId,
+                    courseName: editInfo?.courseName,
+                    courseLink: editInfo?.courseLink,
+                    companyName: editInfo?.companyName,
+                    contact: editInfo?.contact,
+                    promoCode: editInfo?.promoCode,
+                    recommend: editInfo?.recommend,
+                    courseImg: editInfo?.courseImg,
+                    courseFee: editInfo?.courseFee,
+                    discountCourseFee: editInfo?.discountCourseFee,
+                }
+            }
+            const result1 = await discountCollection.updateOne(filter, dataUpdated)
+            res.send(result1)
+
+        })
+        // deleteRewardInfo
+        app.delete('/deleteRewardInfo', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const id = req.query.id
+            const query = {
+                _id: new ObjectId(id)
+            }
+            const result = await discountCollection.deleteOne(query)
+            res.send(result)
+        })
+        // guidanceDataByAdmin
+        app.get('/guidanceDataByAdmin', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const clubName = req.query.clubName;
+            const searchType = req.query.searchType;
+            const searchReply = req.query.searchReply;
+
+            // console.log(searchText)
+            if (searchType && searchReply) {
+                if (searchReply === "no") {
+                    if (searchType === "all") {
+                        const query = {
+                            clubName: clubName,
+                            // type: searchType,
+                            reply: searchReply
+                        };
+                        const result = await guidanceCollection.find(query).sort({ requestDateNum: -1 }).toArray();
+                        return res.send(result);
+                    }
+                    else {
+                        const query = {
+                            clubName: clubName,
+                            type: searchType,
+                            reply: searchReply
+                        };
+                        const result = await guidanceCollection.find(query).sort({ requestDateNum: -1 }).toArray();
+                        return res.send(result);
+                    }
+                }
+                else {
+                    if (searchType === "all") {
+                        const query = {
+                            clubName: clubName,
+                            // type: searchType,
+                            reply: { $ne: "no" }
+                        };
+                        const result = await guidanceCollection.find(query).sort({ requestDateNum: -1 }).toArray();
+                        return res.send(result);
+                    }
+                    else {
+                        const query = {
+                            clubName: clubName,
+                            type: searchType,
+                            reply: { $ne: "no" }
+                        };
+                        const result = await guidanceCollection.find(query).sort({ requestDateNum: -1 }).toArray();
+                        return res.send(result);
+                    }
+
+                }
+
+            }
+            else {
+                const query = {
+                    clubName: clubName,
+                };
+                const result = await guidanceCollection.find(query).sort({ requestDateNum: -1 }).toArray();
+                return res.send(result);
+
+
+            }
+        });
+        // editGuidanceReply
+        app.put("/editGuidanceReply", verifyJWT, verifyClubAdmin, async (req, res) => {
+            const editInfo = req.body
+
+            const filter = {
+                _id: new ObjectId(editInfo?.mongodbId)
+            }
+            const dataUpdated = {
+                $set: {
+                    reply: editInfo?.reply
+                }
+            }
+            const result1 = await guidanceCollection.updateOne(filter, dataUpdated)
+            res.send(result1)
+
+        })
+        // eventInfoById
+        app.get('/eventInfoById', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const clubName = req.query.clubName
+            const eventId = parseInt(req.query.eventId)
+            const query = {
+                clubName: clubName,
+                eventId: eventId,
+                advisorApproval: "approved"
+            }
+            const result = await eventRegisterInfos.findOne(query)
+            res.json(result)
+            // res.send(result)
+
+        })
+        // add_budget_data
+        app.post('/add_budget_data', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const data = req.body
+            const query = {
+                eventId: data?.eventId,
+                clubName: data?.clubName
+            }
+            const existClub = await budgetCollection.findOne(query)
+            if (!existClub) {
+                const result = await budgetCollection.insertOne(data)
+                return res.send(result)
+            }
+            else {
+                return res.send({ acknowledged: false })
+            }
+
+
+        })
+        // budgetDataByAdmin
+        app.get('/budgetDataByAdmin', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const clubName = req.query.clubName
+            const query = {
+                clubName: clubName
+
+            }
+            const result = await budgetCollection.find(query).toArray()
+            res.send(result)
+            // res.send(result)
+
+        })
+        // deleteBudgetInfo
+        app.delete('/deleteBudgetInfo', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const id = req.query.id
+            const query = {
+                _id: new ObjectId(id)
+            }
+            const result = await budgetCollection.deleteOne(query)
+            res.send(result)
+        })
+
+        //........*****Advisor Panel**********......
+        // eventInfoByAdvisor
+        app.get('/eventInfoByAdvisor', verifyJWT, verifyAdvisor, async (req, res) => {
+            const advisorApproval = req.query.advisorApproval
+            if (advisorApproval) {
+                const query = {
+                    advisorApproval: advisorApproval
+                }
+                const result = await eventRegisterInfos.find(query).sort({ eventApplyDateNum: -1 }).toArray()
+                return res.send(result)
+            }
+            else {
+                const query = {
+
+                }
+                const result = await eventRegisterInfos.find(query).sort({ eventApplyDateNum: -1 }).toArray()
+                return res.send(result)
+            }
+
+        })
+        // update Advisor approval updateAdviosrApproval
+        app.put("/updateAdviosrApproval", verifyJWT, verifyAdvisor, async (req, res) => {
+            const editInfo = req.body
+
+            const filter = {
+                _id: new ObjectId(editInfo?.mongodbId)
+            }
+            const dataUpdated = {
+                $set: {
+                    advisorApproval: editInfo?.advisorApproval
+                }
+            }
+            const result1 = await eventRegisterInfos.updateOne(filter, dataUpdated)
+            res.send(result1)
+
+        })
+        app.get('/budgetDataByAdvisor', verifyJWT, verifyAdvisor, async (req, res) => {
+            const clubName = req.query.clubName
+            const replyStatus = req.query.replyStatus
+            if (replyStatus === "no") {
+                const query = {
+                    clubName: clubName,
+                    replyStatus: ""
+                }
+                const result = await budgetCollection.find(query).toArray()
+                return res.send(result)
+            }
+            else if (replyStatus === "yes") {
+                const query = {
+                    clubName: clubName,
+                    replyStatus: { $ne: "" }
+
+                }
+                const result = await budgetCollection.find(query).toArray()
+                return res.send(result)
+            }
+            else {
+                const query = {
+                    clubName: clubName,
+
+
+                }
+                const result = await budgetCollection.find(query).toArray()
+                return res.send(result)
+            }
+
+            // res.send(result)
+
+        })
+        // updateBugetReplyStatus
+        app.put("/updateBugetReplyStatus", verifyJWT, verifyAdvisor, async (req, res) => {
+            const editInfo = req.body
+
+            const filter = {
+                _id: new ObjectId(editInfo?.mongodbId)
+            }
+            const dataUpdated = {
+                $set: {
+                    replyStatus: editInfo?.replyStatus
+                }
+            }
+            const result1 = await budgetCollection.updateOne(filter, dataUpdated)
+            res.send(result1)
+
+        })
+
     }
     finally {
 
