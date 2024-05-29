@@ -62,6 +62,8 @@ async function run() {
         const guidanceCollection = client.db("BduClubMaster").collection("GuidanceCollection");
         const noticeCollection = client.db("BduClubMaster").collection("NoticeCollection");
         const budgetCollection = client.db("BduClubMaster").collection("BudgetCollection");
+        const executiveMembers = client.db("BduClubMaster").collection("ExecutiveMembers");
+        const kpiCollections = client.db("BduClubMaster").collection("kpiCollections");
 
 
         // insert std register info to database
@@ -1145,6 +1147,131 @@ async function run() {
             const result = await budgetCollection.deleteOne(query)
             res.send(result)
         })
+        // add_executive_member
+        app.post('/add_executive_member', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const data = req.body
+            const result = await executiveMembers.insertOne(data)
+            return res.send(result)
+        })
+        // executiveDataByAdmin
+        app.get('/executiveDataByAdmin', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const clubName = req.query.clubName;
+            const searchText = req.query.searchText;
+
+            if (searchText) {
+                const query = {
+                    clubName: clubName,
+                    $text: {
+                        $search: searchText
+                    }
+                };
+                const result = await executiveMembers.find(query).sort({ memberRank: 1 }).toArray();
+                return res.send(result);
+            }
+            else {
+
+                const query = {
+                    clubName: clubName,
+                };
+                const result = await executiveMembers.find(query).sort({ memberRank: 1 }).toArray();
+                return res.send(result);
+
+            }
+        });
+        // deleteExecutiveInfo
+        app.delete('/deleteExecutiveInfo', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const id = req.query.id
+            const query = {
+                _id: new ObjectId(id)
+            }
+            const result = await executiveMembers.deleteOne(query)
+            res.send(result)
+        })
+        // editExecutiveData
+        app.put("/editExecutiveData", verifyJWT, verifyClubAdmin, async (req, res) => {
+            const editInfo = req.body
+
+            const filter = {
+                _id: new ObjectId(editInfo?.mongodbId)
+            }
+            const dataUpdated = {
+                $set: {
+
+                    memberName: editInfo?.memberName,
+                    memberUid: editInfo?.memberUid,
+                    memberDepartment: editInfo?.memberDepartment, memberSession: editInfo?.memberSession, memberEmail: editInfo?.memberEmail,
+                    memberPhone: editInfo?.memberPhone,
+                    designation: editInfo?.designation,
+                    memberImage: editInfo?.memberImage,
+                    fbLink: editInfo?.fbLink,
+                    linkedinLink: editInfo?.linkedinLink,
+                    memberRank: editInfo?.memberRank
+                }
+            }
+            const result1 = await executiveMembers.updateOne(filter, dataUpdated)
+            res.send(result1)
+
+        })
+        // executiveDataKpiInsert
+        app.get('/executiveDataKpiInsert', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const clubName = req.query.clubName;
+            const searchText = req.query.searchText;
+            const searchRank = parseInt(req.query.searchRank);
+
+            if (searchText) {
+                const query = {
+                    clubName: clubName,
+                    $text: {
+                        $search: searchText
+                    }
+                };
+                const result = await executiveMembers.find(query).sort({ memberRank: 1 }).toArray();
+                return res.send(result);
+            }
+            else if (searchRank) {
+                const query = {
+                    clubName: clubName,
+                    memberRank: { $gte: searchRank }
+                };
+                const result = await executiveMembers.find(query).sort({ memberRank: 1 }).toArray();
+                return res.send(result);
+            }
+            else {
+
+                const query = {
+                    clubName: clubName,
+                };
+                const result = await executiveMembers.find(query).sort({ memberRank: 1 }).toArray();
+                return res.send(result);
+
+            }
+        });
+        // add_executive_member_kpi_result
+        app.post('/add_executive_member_kpi_result', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const data = req.body
+            const result = await kpiCollections.insertOne(data)
+            return res.send(result)
+        })
+        // getAttendence&FieldScore
+        app.get('/getAttendenceFieldScore', verifyJWT, verifyClubAdmin, async (req, res) => {
+            const clubName = req.query.clubName
+            const id = req.query.id
+
+            const query = {
+                clubName: clubName,
+                memberMongodbId: id
+            }
+            const result = await kpiCollections.findOne(query)
+            res.json(result)
+            // res.send(result)
+
+        })
+
+
+
+
+
+
 
         //........*****Advisor Panel**********......
         // eventInfoByAdvisor
